@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import store from '../Store';
 const dispatch = store.dispatch;
+import toastr from 'toastr';
 
 export function login(login, password) {
   let token = 'Basic ' + btoa(login + ':' + password);
@@ -19,15 +20,19 @@ export function login(login, password) {
             login: { isAuth: true, Name: result.user, token: token },
           });
         } else {
-          console.log(result);
+          toastr.options = {
+            "positionClass": "toast-top-center",
+          }
+          toastr.error('Incorrect login or password...');
         }
       });
   };
 }
 
 export function logout() {
+  localStorage.removeItem('authentication');
   return {
     type: 'LOG_OFF',
-    login: { isAuth: false, },
+    login: { isAuth: false },
   };
 }

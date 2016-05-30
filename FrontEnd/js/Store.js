@@ -14,7 +14,7 @@ const initialState = {
 //let createStoreWithMiddleware = applyMiddleware(promiseMiddleware)(createStore);
 //const store = createStoreWithMiddleware(reducer, initialState);
 
-let store = createStore(rootReducer, applyMiddleware(thunkMiddleware, authenticationMiddleware));
+let store = createStore(rootReducer, applyMiddleware(authenticationMiddleware, thunkMiddleware));
 
 /*
 function fetchPosts() {

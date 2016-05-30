@@ -4,18 +4,12 @@ import * as Actions from '../actions/index';
 import store from '../Store';
 
 class LoginForm extends Component {
-  constructor() {
+  constructor(props) {
     super();
-
-    //console.log(props);
-    //if (localStorage.getItem('authentication'))
-    //props.isAuth = true;
   }
-
   _loginBtnClick() {
     store.dispatch(Actions.login(login.value, password.value));
   }
-
   _logoutBtnClick() {
     store.dispatch(Actions.logout());
   }
@@ -55,6 +49,11 @@ class LoginForm extends Component {
 
 export default connect(
   (state) => {
+    if(localStorage.getItem('authentication'))
+      state.login.isAuth = true;
+    else
+      state.login.isAuth = false;
+      
     return { isAuth: state.login.isAuth, Name: state.login.Name };
   }
 )(LoginForm);

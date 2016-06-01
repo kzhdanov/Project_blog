@@ -4,7 +4,7 @@ const dispatch = store.dispatch;
 import toastr from 'toastr';
 
 export function login(login, password) {
-  let token = 'Basic ' + btoa(login + ':' + password);
+  let token = btoa(login + ':' + password);
   return dispatch => {
     $.ajax({
       type:'POST',
@@ -23,14 +23,14 @@ export function login(login, password) {
           toastr.options = {
             "positionClass": "toast-top-center",
           }
-          toastr.error('Incorrect login or password...');
+          toastr.warning('Incorrect login or password...');
         }
       });
   };
 }
 
 export function logout() {
-  localStorage.removeItem('authentication');
+  localStorage.removeItem('authenticationKjBlog_Key');
   return {
     type: 'LOG_OFF',
     login: { isAuth: false },

@@ -5,7 +5,7 @@ export default function login(state = {}, action) {
     case 'LOG_ON':
       return Object.assign({}, action.login);
     case 'LOG_OFF':
-      return action.login;
+      return Object.assign({}, action.login);
     case 'TEST':
       return Object.assign({}, state);
     default:

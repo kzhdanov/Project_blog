@@ -19800,7 +19800,7 @@
 	}(_react.Component);
 	
 	exports.default = (0, _reactRedux.connect)(function (state) {
-	  if (localStorage.getItem('authentication')) state.login.isAuth = true;else state.login.isAuth = false;
+	  if (localStorage.getItem('authenticationKjBlog_Key')) state.login.isAuth = true;else state.login.isAuth = false;
 	
 	  return { isAuth: state.login.isAuth, Name: state.login.Name };
 	})(LoginForm);
@@ -21378,7 +21378,7 @@
 	
 	var dispatch = _Store2.default.dispatch;
 	function login(login, password) {
-	  var token = 'Basic ' + btoa(login + ':' + password);
+	  var token = btoa(login + ':' + password);
 	  return function (dispatch) {
 	    _jquery2.default.ajax({
 	      type: 'POST',
@@ -21396,14 +21396,14 @@
 	        _toastr2.default.options = {
 	          "positionClass": "toast-top-center"
 	        };
-	        _toastr2.default.error('Incorrect login or password...');
+	        _toastr2.default.warning('Incorrect login or password...');
 	      }
 	    });
 	  };
 	}
 	
 	function logout() {
-	  localStorage.removeItem('authentication');
+	  localStorage.removeItem('authenticationKjBlog_Key');
 	  return {
 	    type: 'LOG_OFF',
 	    login: { isAuth: false }
@@ -31367,7 +31367,7 @@
 	    case 'LOG_ON':
 	      return Object.assign({}, action.login);
 	    case 'LOG_OFF':
-	      return action.login;
+	      return Object.assign({}, action.login);
 	    case 'TEST':
 	      return Object.assign({}, state);
 	    default:
@@ -31891,10 +31891,10 @@
 	function authenticationMiddleware() {
 	  return function (next) {
 	    return function (action) {
-	      next(action);
 	      if (action.type === 'LOG_ON') {
-	        localStorage.setItem('authentication', JSON.stringify(action.login.token));
+	        localStorage.setItem('authenticationKjBlog_Key', JSON.stringify(action.login.token));
 	      }
+	      next(action);
 	    };
 	  };
 	}

@@ -49,11 +49,11 @@ class LoginForm extends Component {
 
 export default connect(
   (state) => {
-    if(localStorage.getItem('authentication'))
+    if(localStorage.getItem('authenticationKjBlog_Key'))
       state.login.isAuth = true;
     else
       state.login.isAuth = false;
-      
+
     return { isAuth: state.login.isAuth, Name: state.login.Name };
   }
 )(LoginForm);

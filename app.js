@@ -5,6 +5,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var ErrorController = require('./Controllers/Error');
 var AuthController = require('./Controllers/Auth');
+var ArticleController = require('./Controllers/Article');
 var passport = require('passport');
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +25,12 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', AuthController.isAuth, function (req, res) {
-  console.log(req);
+
+ArticleController.GetAllArticles(function(err, data) {
+  console.log(data);
+});
+
+
   res.send({ code: 1, role: 1, user: req.user.Login });
 });
 
@@ -34,6 +40,6 @@ app.get('/home', AuthController.isAuth, function (req, res) {
   res.end('test');
 });
 
-app.listen(3000, function () {
-  console.log('Server successfully started on 3000 port');
+app.listen(4000, function () {
+  console.log('Server successfully started on 4000 port');
 });

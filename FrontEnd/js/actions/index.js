@@ -11,7 +11,7 @@ export function login(login, password) {
       headers: {
         Authorization: 'Basic ' + btoa(login + ':' + password),
       },
-      url: 'http://localhost:3000/',
+      url: 'http://localhost:4000/',
     }).done((result) =>
       {
         if (!result.hasOwnProperty('error')) {

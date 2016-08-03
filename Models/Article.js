@@ -4,9 +4,7 @@ module.exports = function(pool) {
 		SaveArticle: function(key, callback) {
 			pool.query('INSERT INTO Articles SET ?', key, callback);
 		},
-    SelectAll: function(callback) {
-      pool.query('Select * from Articles', callback);
-    }
+    SelectAll: (callback)  => { pool.query('Select * from Articles', callback); }
 	};
 
 	return context;

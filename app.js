@@ -25,12 +25,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', AuthController.isAuth, function (req, res) {
-
-ArticleController.GetAllArticles(function(err, data) {
-  console.log(data);
-});
-
-
+  ArticleController.GetAllArticles((err, data) => { console.log(data); });
   res.send({ code: 1, role: 1, user: req.user.Login });
 });
 

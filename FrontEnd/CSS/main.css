@@ -2,3 +2,18 @@ body{background:url(../images/dark.png);color:white}.navbar-form .form-group{pad
 #articles-container {
     color:#CCCCCC;
 }
+.TopFontPix {
+	background: url(../images/1.jpg) repeat-x center;
+	width: 100%;
+	height: 200px;
+  opacity: .6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar {
+  margin: 0;
+}
+.navbar-inverse {
+  background-color: #111;
+}
